@@ -1,0 +1,21 @@
+services:
+  app:
+    build: { context: ., target: app }
+    restart: unless-stopped
+    environment:
+      APP_NAME: usg-page
+      APP_ENV: production
+      APP_DEBUG: "false"
+      APP_KEY: ${APP_KEY:?set APP_KEY in .env}
+      APP_URL: ${APP_URL:-http://localhost:8090}
+      LOG_CHANNEL: stderr
+      CACHE_STORE: file
+      SESSION_DRIVER: cookie
+      DB_CONNECTION: sqlite
+
+  web:
+    build: { context: ., target: web }
+    restart: unless-stopped
+    depends_on: [app]
+    ports:
+      - "${PORT:-8090}:80"
