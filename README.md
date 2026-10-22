@@ -23,6 +23,20 @@ docker compose up -d --build      # http://localhost:8090 (PORT=… 로 변경)
 docker compose down
 ```
 
+`compose.override.yaml`(로컬 포트)은 로컬에서만 쓰인다.
+
+## Coolify 배포
+
+1. New Resource → Public/Private Repository → `v1r4m/usg-page`, 브랜치 `main`
+2. Build Pack: **Docker Compose**, Docker Compose Location: **`/compose.yaml`**
+3. 서비스 `web` 의 Domains 에 `https://usg.example.dev` 입력 (`app` 은 비워둠)
+4. Environment Variables
+   - `APP_KEY` = `base64:…` (새로 생성: `php -r 'echo "base64:".base64_encode(random_bytes(32));'`)
+   - `APP_URL` = 위 도메인
+5. Deploy → `https://<도메인>/up` 이 200 이면 정상
+
+이후엔 `main` 에 push 하면 (Auto Deploy 켜둔 경우) 자동 재배포.
+
 PHP 패치가 나오면 `Dockerfile`의 `PHP_IMAGE` 태그만 올리고 다시 빌드.
 
 캐시된 순위 새로고침: `php artisan cache:forget ctftime.team`
