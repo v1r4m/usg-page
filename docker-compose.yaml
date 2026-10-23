@@ -1,34 +1,11 @@
-# Coolify: Build Pack = Docker Compose, Docker Compose Location = /compose.yaml
-# 도메인은 Coolify UI에서 web 서비스에 지정 (Traefik → web:80)
+# Coolify: Dockerfile 빌드팩이면 이 파일은 안 쓰인다 (Ports Exposes = 80).
+# Docker Compose 빌드팩이면 web 서비스에 도메인 지정.
 services:
-  app:
-    build: { context: ., target: app }
+  web:
+    build: .
     restart: unless-stopped
     environment:
-      APP_NAME: usg-page
-      APP_ENV: production
-      APP_DEBUG: "false"
       APP_KEY: ${APP_KEY:?}
       APP_URL: ${APP_URL:-http://localhost:8090}
-      LOG_CHANNEL: stderr
-      CACHE_STORE: file
-      SESSION_DRIVER: cookie
-      DB_CONNECTION: sqlite
-    healthcheck:
-      test: ["CMD-SHELL", "php -r 'exit(@fsockopen(\"127.0.0.1\", 9000) ? 0 : 1);'"]
-      interval: 10s
-      timeout: 3s
-      retries: 5
-
-  web:
-    build: { context: ., target: web }
-    restart: unless-stopped
-    depends_on:
-      app: { condition: service_healthy }
     expose:
       - "80"
-    healthcheck:
-      test: ["CMD", "wget", "-q", "-O", "/dev/null", "http://127.0.0.1/up"]
-      interval: 10s
-      timeout: 3s
-      retries: 5

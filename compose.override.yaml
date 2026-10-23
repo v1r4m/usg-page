@@ -1,5 +1,0 @@
-# 로컬 전용 (docker compose 가 자동으로 합친다). Coolify는 compose.yaml 만 읽는다.
-services:
-  web:
-    ports:
-      - "${PORT:-8090}:80"

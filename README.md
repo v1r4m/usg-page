@@ -15,7 +15,7 @@ php artisan serve
 
 ## Docker (배포용)
 
-nginx + php-fpm 두 컨테이너. PHP는 PHP2Shell 패치 버전(`php:8.5.12-fpm-alpine`)으로 고정되어 있다.
+nginx + php-fpm 단일 컨테이너. PHP는 PHP2Shell 패치 버전(`php:8.5.12-fpm-alpine`)으로 고정되어 있다.
 
 ```sh
 # .env 에 APP_KEY 필요 (php artisan key:generate --show)
@@ -23,13 +23,14 @@ docker compose up -d --build      # http://localhost:8090 (PORT=… 로 변경)
 docker compose down
 ```
 
-`compose.override.yaml`(로컬 포트)은 로컬에서만 쓰인다.
+`docker-compose.override.yaml`(로컬 포트)은 로컬에서만 쓰인다.
 
 ## Coolify 배포
 
 1. New Resource → Public/Private Repository → `v1r4m/usg-page`, 브랜치 `main`
-2. Build Pack: **Docker Compose**, Docker Compose Location: **`/compose.yaml`**
-3. 서비스 `web` 의 Domains 에 `https://usg.example.dev` 입력 (`app` 은 비워둠)
+2. Build Pack: **Dockerfile**, Base Directory `/`, Dockerfile Location `/Dockerfile`, Ports Exposes **`80`**
+   (Docker Compose 빌드팩도 가능: Location `/docker-compose.yaml`, `web` 서비스에 도메인)
+3. Domains 에 `https://usg.example.dev` 입력
 4. Environment Variables
    - `APP_KEY` = `base64:…` (새로 생성: `php -r 'echo "base64:".base64_encode(random_bytes(32));'`)
    - `APP_URL` = 위 도메인
