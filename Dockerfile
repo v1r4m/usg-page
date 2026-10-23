@@ -31,5 +31,5 @@ COPY docker/entrypoint.sh /usr/local/bin/entrypoint
 RUN chmod +x /usr/local/bin/entrypoint && rm -f public/hot
 
 EXPOSE 80
-HEALTHCHECK --interval=10s --timeout=3s --retries=5 CMD wget -q -O /dev/null http://127.0.0.1/up || exit 1
+HEALTHCHECK --start-period=10s --interval=5s --timeout=3s --retries=5 CMD wget -q -O /dev/null http://127.0.0.1/up || exit 1
 ENTRYPOINT ["entrypoint"]
