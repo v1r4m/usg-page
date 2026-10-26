@@ -105,7 +105,7 @@
   }
   .rows .row .place { flex: 0 0 2.2rem; color: var(--muted); }
   .rows .row .event { flex: 1; min-width: 0; }
-  .rows .row .pts { color: var(--muted); font-size: 0.76rem; padding-top: 0.05rem; }
+  .rows .row .date { color: var(--muted); font-size: 0.76rem; padding-top: 0.05rem; white-space: nowrap; }
   .rows .row.best .place { color: var(--ink); }
 
   .rows .total {
@@ -190,7 +190,7 @@
         <div class="row {{ $result['place'] === $best ? 'best' : '' }}">
           <span class="place">#{{ $result['place'] }}</span>
           <span class="event">{{ $result['event'] }}</span>
-          <span class="pts">{{ number_format($result['rating'], 3) }}</span>
+          <span class="date">{{ \Illuminate\Support\Carbon::parse($result['date'])->format('Y.m.d') }}</span>
         </div>
       @endforeach
       <div class="total">

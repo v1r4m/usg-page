@@ -21,8 +21,9 @@ class ExampleTest extends TestCase
             ->assertSee('#500 overall')
             ->assertSee('150.123 pts')
             ->assertSee('Sieberrsec CTF 7.0')
+            ->assertSee('2026.06.17')
             ->assertSee('aka rubiyalab usg')
-            ->assertSeeInOrder(['v1r4m', 'cooku222', 'joy', 'suyeongg092']);
+            ->assertSeeInOrder(['v1r4m', 'cooku222', 'joy', 'suyeongg092', 'haochi']);
     }
 
     public function test_team_page_falls_back_when_ctftime_is_down(): void

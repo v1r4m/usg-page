@@ -29,6 +29,7 @@ return [
         ['handle' => 'sun20ny'],
         ['handle' => '안효빈'],
         ['handle' => 'suyeongg092'],
+        ['handle' => 'haochi'],
     ],
 
     // CTFtime API를 못 쓸 때 보여줄 값
@@ -39,15 +40,15 @@ return [
         'country_place' => 42,
     ],
 
-    // 최신순
+    // 최신순, date = CTFtime 대회 시작일
     'results' => [
-        ['year' => 2026, 'place' => 206, 'event' => 'Lexington Informatics Tournament CTF 2026', 'points' => 2543, 'rating' => 51.872],
-        ['year' => 2026, 'place' => 110, 'event' => 'BDSec CTF 2026', 'points' => 1085, 'rating' => 3.775],
-        ['year' => 2026, 'place' => 94, 'event' => 'LYKNCTF', 'points' => 2647, 'rating' => 6.773],
-        ['year' => 2026, 'place' => 14, 'event' => 'Sieberrsec CTF 7.0', 'points' => 7678, 'rating' => 16.356],
-        ['year' => 2026, 'place' => 36, 'event' => 'Hack for a Change 2026 May: UN SDG 1', 'points' => 3950, 'rating' => 25.211],
+        ['date' => '2026-08-01', 'place' => 206, 'event' => 'Lexington Informatics Tournament CTF 2026', 'points' => 2543, 'rating' => 51.872],
+        ['date' => '2026-07-20', 'place' => 110, 'event' => 'BDSec CTF 2026', 'points' => 1085, 'rating' => 3.775],
+        ['date' => '2026-07-06', 'place' => 94, 'event' => 'LYKNCTF', 'points' => 2647, 'rating' => 6.773],
+        ['date' => '2026-06-17', 'place' => 14, 'event' => 'Sieberrsec CTF 7.0', 'points' => 7678, 'rating' => 16.356],
+        ['date' => '2026-05-19', 'place' => 36, 'event' => 'Hack for a Change 2026 May: UN SDG 1', 'points' => 3950, 'rating' => 25.211],
     ],
 
-    'updated' => '2026-10-22',
+    'updated' => '2026-10-26',
 
 ];
